@@ -19,7 +19,7 @@ app.get('/randomJoke', async (req, res) => {
   try {
     const response = await axios.get(API_URL);
     const joke = response.data;
-    res.render('joke.ejs', { joke });
+    res.render('index.ejs', { joke });
   } catch (error) {
     res.send(error.message);
   }
