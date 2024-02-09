@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Random Joke</title>
-  <link rel="stylesheet" href="public/styles/main.css">
+  <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
     <section id="home">
@@ -13,10 +13,65 @@
             <h1>Get a Joke</h1>
           </div>
           <div class="card-body">
-            <p>Click the button below to get a joke.</p>
-            <button id="get-joke">Get Joke</button>
-            <div id="joke"></div>
+            <form id="myForm" method="POST">
+              <div class="container">
+                <h1 for="search">Search for a Joke</h1>
+                <h4>Filter</h4>
+                <div class="filter">
+                  <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category">
+                      <option value="Miscellaneous">Miscellaneous</option>
+                      <option value="Programming">Programming</option>
+                      <option value="Pun">Pun</option>
+                      <option value="Spooky">Spooky</option>
+                      <option value="Christmas">Christmas</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="type">Type</label>
+                    <select id="type" name="type">
+                      <option value="single">Single</option>
+                      <option value="twopart">Two Part</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input id="amount" type="number" name="amount" min="1" max="10">
+                  </div>
+                </div>
+                <input id="search" type="submit" value="Search for a Joke" name="search" formaction="/search" >
+                <input id="random" type="submit" value="Get a Random Joke" name="random" formaction="/randomJoke" >
+              </div>
+            </form>
           </div>
+        </div>
+        <div class="card2">
+          <%if(type === 'single') { %>
+            <div class="card-header">
+              <h1>Your Joke</h1>
+            </div>
+            <div class="card-body">
+              <p><%=joke%></p>
+              <span><%=category%></span>
+            </div>
+          <% }else if(type === 'twopart') { %>
+            <div class="card-header">
+              <h1>Your Joke</h1>
+            </div>
+            <div class="card-body">
+              <p><%=setup%></p>
+              <p><%=delivery%></p>
+              <span><%=category%></span>
+            </div>
+          <% } else { %>
+            <div class="card-header">
+              <h1>Your Joke</h1>
+            </div>
+            <div class="card-body">
+              <p></p>
+            </div>
+          <% } %>
         </div>
     </section>
 </body>
